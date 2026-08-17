@@ -1,0 +1,35 @@
+---
+import main from '../assets/images/main.jpg';
+---
+
+<section class="relative flex min-h-screen items-center justify-center overflow-hidden">
+    <img
+        src={main.src}
+        alt="Piekarnia Jedynka"
+        class="absolute inset-0 h-full w-full object-cover"
+    />
+
+    <div class="absolute inset-0 bg-black/50"></div>
+
+    <div class="relative z-10 px-6 text-center text-white">
+        <h1 class="mb-6 text-5xl font-bold sm:text-6xl">Piekarnia Jedynka</h1>
+
+        <p class="mb-10 text-xl">Świeże pieczywo każdego dnia</p>
+
+        <div class="flex flex-col justify-center gap-4 sm:flex-row">
+            <a
+                href="#products"
+                class="rounded-full bg-amber-500 px-8 py-4 text-lg font-semibold transition hover:bg-amber-600"
+            >
+                Zobacz ofertę
+            </a>
+
+            <a
+                href="/history"
+                class="rounded-full border border-white/80 px-8 py-4 text-lg font-semibold transition hover:bg-white hover:text-amber-900"
+            >
+                Poznaj naszą historię
+            </a>
+        </div>
+    </div>
+</section>

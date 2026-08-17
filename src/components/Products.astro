@@ -1,0 +1,76 @@
+---
+import { products } from '../data/products';
+---
+
+<section id="products" class="bg-stone-50 py-24">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="mb-16 max-w-2xl">
+            <span class="text-sm font-semibold uppercase tracking-[0.2em] text-amber-700">
+                Nasza oferta
+            </span>
+
+            <h2 class="mt-3 text-4xl font-bold tracking-tight text-stone-900">Nasze wypieki</h2>
+
+            <p class="mt-4 text-lg leading-relaxed text-stone-600">
+                Codziennie świeże pieczywo i tradycyjne wypieki przygotowywane na miejscu.
+            </p>
+        </div>
+
+        <div class="grid gap-x-12 gap-y-12 md:grid-cols-3">
+            {
+                products.map((category, index) => (
+                    <div
+                        class:list={[
+                            'relative',
+                            index !== 0 && 'md:border-l md:border-stone-200 md:pl-12',
+                        ]}
+                    >
+                        <div class="mb-7 flex items-center gap-4">
+                            <span
+                                class="
+                                    flex h-10 w-10 shrink-0
+                                    items-center justify-center
+                                    rounded-full
+                                    bg-amber-100
+                                    text-lg font-bold
+                                    text-amber-700
+                                "
+                            >
+                                {String(index + 1).padStart(2, '0')}
+                            </span>
+
+                            <h3 class="text-2xl font-semibold text-stone-900">
+                                {category.category}
+                            </h3>
+                        </div>
+
+                        <ul class="grid gap-x-6 gap-y-3 sm:grid-cols-2 md:grid-cols-1">
+                            {category.items.map((item) => (
+                                <li
+                                    class="
+                                            group flex items-start gap-3
+                                            text-stone-600
+                                            transition-colors
+                                            hover:text-stone-900
+                                        "
+                                >
+                                    <span
+                                        class="
+                                                mt-[0.65rem] h-1.5 w-1.5
+                                                shrink-0 rounded-full
+                                                bg-amber-600
+                                                transition-transform
+                                                group-hover:scale-150
+                                            "
+                                    />
+
+                                    <span>{item}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>

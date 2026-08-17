@@ -1,0 +1,592 @@
+---
+import { chapters } from '../data/chapters';
+import article from '../assets/images/history_article.jpg';
+
+const portraitChapter = chapters.find((chapter) => chapter.layout === 'portrait');
+---
+
+<!-- TŁA -->
+<div class="fixed inset-0 bg-stone-950">
+    {
+        chapters.map((chapter, index) => (
+            <div
+                class="history-background absolute inset-0 opacity-0 transition-opacity duration-1000"
+                data-background={index}
+            >
+                <img
+                    src={chapter.image}
+                    alt=""
+                    class:list={[
+                        'history-image h-full w-full',
+                        chapter.layout === 'portrait'
+                            ? 'scale-110 object-cover opacity-50 blur-xl'
+                            : 'object-cover',
+                    ]}
+                />
+
+                <div
+                    class:list={[
+                        'absolute inset-0',
+                        chapter.layout === 'portrait'
+                            ? 'bg-black/65'
+                            : 'bg-black/55',
+                    ]}
+                />
+            </div>
+        ))
+    }
+</div>
+
+<!-- GŁÓWNA NAKŁADKA -->
+<div
+    class="
+        pointer-events-none
+        fixed inset-0 z-50
+        flex items-center justify-center
+        px-6
+        text-white
+    "
+>
+    <!-- ZWYKŁE ROZDZIAŁY -->
+    <div
+        id="content"
+        class="
+            max-w-3xl
+            text-center
+            transition-all
+            duration-700
+        "
+    >
+        <p class="mb-4 text-sm uppercase tracking-[0.3em] text-amber-300">
+            Piekarnia Jedynka
+        </p>
+
+        <h1
+            id="title"
+            class="text-5xl font-bold sm:text-6xl"
+        >
+        </h1>
+
+        <p
+            id="text"
+            class="
+                mx-auto mt-6 max-w-2xl
+                text-lg leading-relaxed
+                text-white/90
+                sm:text-xl
+            "
+        >
+        </p>
+    </div>
+
+    <!-- ZAŁOŻYCIEL -->
+    {
+        portraitChapter && (
+            <div
+                id="portrait-content"
+                class="
+                    absolute inset-0
+                    hidden
+                    items-center
+                    px-6
+                    opacity-0
+                    transition-all
+                    duration-700
+                    lg:px-12
+                    xl:px-20
+                "
+            >
+                <div
+                    class="
+                        mx-auto grid
+                        w-full
+                        max-w-7xl
+                        items-center
+                        gap-10
+                        lg:grid-cols-[0.8fr_1.2fr]
+                        lg:gap-16
+                        xl:gap-24
+                    "
+                >
+                    <!-- PORTRET -->
+                    <div
+                        class="
+                            relative
+                            mx-auto
+                            flex
+                            max-h-[78vh]
+                            justify-center
+                            lg:justify-end
+                        "
+                    >
+                        <div
+                            class="
+                                absolute
+                                -inset-8
+                                rounded-[2rem]
+                                bg-black/30
+                                blur-3xl
+                            "
+                        />
+
+                        <img
+                            src={portraitChapter.image}
+                            alt="Założyciel Piekarni Jedynka"
+                            class="
+                                relative
+                                max-h-[78vh]
+                                max-w-full
+                                -rotate-[1.5deg]
+                                object-contain
+                                shadow-2xl
+                                ring-1
+                                ring-white/10
+                            "
+                        />
+                    </div>
+
+                    <!-- TEKST -->
+                    <div class="max-w-2xl">
+                        <p
+                            class="
+                                mb-4
+                                text-sm
+                                uppercase
+                                tracking-[0.3em]
+                                text-amber-300
+                            "
+                        >
+                            Początek historii
+                        </p>
+
+                        <h2
+                            class="
+                                text-4xl
+                                font-bold
+                                leading-tight
+                                sm:text-5xl
+                            "
+                        >
+                            {portraitChapter.title}
+                        </h2>
+
+                        <div
+                            class="
+                                mt-7
+                                space-y-4
+                                text-base
+                                leading-relaxed
+                                text-white/85
+                                sm:text-lg
+                            "
+                        >
+                            {
+                                portraitChapter.text
+                                    .split('\n\n')
+                                    .map((paragraph) => (
+                                        <p>{paragraph}</p>
+                                    ))
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
+    <!-- ARTYKUŁ -->
+    <div
+        id="article-content"
+        class="
+            pointer-events-none
+            absolute inset-0
+            hidden
+            items-center
+            justify-center
+            px-6
+            opacity-0
+            transition-all
+            duration-700
+            lg:px-16
+        "
+    >
+        <div
+            class="
+                mx-auto grid
+                max-w-7xl
+                items-center
+                gap-12
+                lg:grid-cols-[0.8fr_1.2fr]
+                lg:gap-20
+            "
+        >
+            <div class="text-center lg:text-left">
+                <p
+                    class="
+                        mb-4
+                        text-sm uppercase
+                        tracking-[0.3em]
+                        text-amber-300
+                    "
+                >
+                    Z kart historii
+                </p>
+
+                <h2 class="text-4xl font-bold sm:text-5xl">
+                    Pisali o nas
+                </h2>
+
+                <p
+                    class="
+                        mt-6
+                        max-w-xl
+                        text-lg
+                        leading-relaxed
+                        text-white/85
+                    "
+                >
+                    Fragment historii Piekarni Jedynka zachowany
+                    na łamach lokalnej prasy.
+                </p>
+            </div>
+
+            <a
+                href={article.src}
+                target="_blank"
+                class="
+                    pointer-events-auto
+                    group
+                    relative
+                    mx-auto
+                    block
+                    max-h-[78vh]
+                    max-w-2xl
+                    cursor-zoom-in
+                    transition
+                    duration-500
+                    hover:scale-[1.02]
+                "
+            >
+                <div
+                    class="
+                        absolute
+                        -inset-8
+                        rounded-[2rem]
+                        bg-black/30
+                        blur-3xl
+                    "
+                />
+
+                <img
+                    src={article.src}
+                    alt="Artykuł prasowy o Piekarni Jedynka"
+                    class="
+                        relative
+                        max-h-[78vh]
+                        w-auto
+                        rotate-[1deg]
+                        object-contain
+                        shadow-2xl
+                        ring-1
+                        ring-white/10
+                        transition-transform
+                        duration-500
+                        group-hover:rotate-0
+                    "
+                />
+            </a>
+        </div>
+    </div>
+
+    <!-- DALEJ -->
+    <button
+        id="next"
+        class="
+            pointer-events-auto
+            absolute bottom-8 left-1/2
+            flex -translate-x-1/2
+            cursor-pointer
+            flex-col items-center
+            gap-2
+            text-white/80
+            transition
+            hover:text-white
+        "
+    >
+        <span
+            id="next-label"
+            class="text-sm uppercase tracking-widest"
+        >
+            Dalej
+        </span>
+
+        <span
+            id="next-icon"
+            class="text-2xl"
+        >
+            ↓
+        </span>
+    </button>
+
+    <!-- POWRÓT -->
+    <a
+        href="/"
+        class="
+            pointer-events-auto
+            absolute left-6 top-6
+            flex items-center
+            gap-2
+            text-white/80
+            transition
+            hover:text-white
+            sm:left-10 sm:top-10
+        "
+    >
+        <span class="text-xl">←</span>
+
+        <span class="text-sm uppercase tracking-widest">
+            Strona główna
+        </span>
+    </a>
+</div>
+
+<!-- SCROLL -->
+<div class="relative z-10">
+    {
+        chapters.map((_, index) => (
+            <div
+                class="h-screen"
+                data-step={index}
+            />
+        ))
+    }
+
+    <div
+        class="h-screen"
+        data-step={chapters.length}
+        data-article
+    />
+</div>
+
+<script
+    id="chapters-data"
+    type="application/json"
+    set:html={JSON.stringify(chapters)}
+></script>
+
+<script>
+    const backgrounds =
+        document.querySelectorAll<HTMLElement>('[data-background]');
+
+    const steps =
+        document.querySelectorAll<HTMLElement>('[data-step]');
+
+    const content =
+        document.querySelector<HTMLElement>('#content');
+
+    const portraitContent =
+        document.querySelector<HTMLElement>('#portrait-content');
+
+    const articleContent =
+        document.querySelector<HTMLElement>('#article-content');
+
+    const title =
+        document.querySelector<HTMLElement>('#title');
+
+    const text =
+        document.querySelector<HTMLElement>('#text');
+
+    const nextButton =
+        document.querySelector<HTMLButtonElement>('#next');
+
+    const nextLabel =
+        document.querySelector<HTMLElement>('#next-label');
+
+    const nextIcon =
+        document.querySelector<HTMLElement>('#next-icon');
+
+    const chaptersData =
+        document.querySelector<HTMLScriptElement>('#chapters-data');
+
+    const chapters = JSON.parse(
+        chaptersData?.textContent ?? '[]'
+    );
+
+    let currentStep = 0;
+
+    function hideElement(element: HTMLElement | null) {
+        element?.classList.remove('opacity-100');
+
+        element?.classList.add(
+            'opacity-0',
+            'translate-y-6'
+        );
+
+        setTimeout(() => {
+            element?.classList.remove('flex');
+            element?.classList.add('hidden');
+        }, 500);
+    }
+
+    function showElement(element: HTMLElement | null) {
+        element?.classList.remove('hidden');
+        element?.classList.add('flex');
+
+        requestAnimationFrame(() => {
+            element?.classList.remove(
+                'opacity-0',
+                'translate-y-6'
+            );
+
+            element?.classList.add('opacity-100');
+        });
+    }
+
+    function showStep(index: number) {
+        currentStep = index;
+
+        const isArticle = index === chapters.length;
+        const chapter = chapters[index];
+        const isPortrait = chapter?.layout === 'portrait';
+
+        const visibleBackgroundIndex = isArticle
+            ? chapters.length - 1
+            : index;
+
+        backgrounds.forEach((background, backgroundIndex) => {
+            const isVisible =
+                backgroundIndex === visibleBackgroundIndex;
+
+            background.classList.toggle(
+                'opacity-100',
+                isVisible
+            );
+
+            background.classList.toggle(
+                'opacity-0',
+                !isVisible
+            );
+
+            background.classList.toggle(
+                'article-background',
+                isArticle && isVisible
+            );
+        });
+
+        if (isArticle) {
+            content?.classList.add(
+                'opacity-0',
+                'translate-y-6'
+            );
+
+            hideElement(portraitContent);
+            showElement(articleContent);
+
+            if (nextLabel) {
+                nextLabel.textContent = 'Strona główna';
+            }
+
+            if (nextIcon) {
+                nextIcon.textContent = '→';
+            }
+
+            return;
+        }
+
+        hideElement(articleContent);
+
+        if (isPortrait) {
+            content?.classList.add(
+                'opacity-0',
+                'translate-y-6'
+            );
+
+            showElement(portraitContent);
+        } else {
+            hideElement(portraitContent);
+
+            content?.classList.remove(
+                'opacity-0',
+                'translate-y-6'
+            );
+
+            if (title) {
+                title.textContent = chapter?.title ?? '';
+            }
+
+            if (text) {
+                text.textContent = chapter?.text ?? '';
+            }
+        }
+
+        if (nextLabel) {
+            nextLabel.textContent = 'Dalej';
+        }
+
+        if (nextIcon) {
+            nextIcon.textContent = '↓';
+        }
+    }
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) {
+                    return;
+                }
+
+                const element =
+                    entry.target as HTMLElement;
+
+                showStep(
+                    Number(element.dataset.step)
+                );
+            });
+        },
+        {
+            threshold: 0.55,
+        }
+    );
+
+    steps.forEach((step) => observer.observe(step));
+
+    nextButton?.addEventListener('click', () => {
+        if (currentStep === steps.length - 1) {
+            window.location.href = '/';
+            return;
+        }
+
+        steps[currentStep + 1]?.scrollIntoView({
+            behavior: 'smooth',
+        });
+    });
+
+    showStep(0);
+</script>
+
+<style>
+    .history-image {
+        filter: brightness(0.9);
+        animation: history-zoom 14s ease-out forwards;
+    }
+
+    .history-background {
+        transition:
+            opacity 1s ease,
+            filter 0.8s ease;
+    }
+
+    .history-background.article-background {
+        filter: blur(5px) brightness(0.6);
+    }
+
+    @keyframes history-zoom {
+        from {
+            transform: scale(1);
+        }
+
+        to {
+            transform: scale(1.06);
+        }
+    }
+</style>
