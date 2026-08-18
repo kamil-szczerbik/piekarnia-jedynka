@@ -1,0 +1,37 @@
+export const locations = [
+    {
+        name: 'Piekarnia Jedynka',
+        type: 'Piekarnia',
+        street: 'ul. Wadowicka 141',
+        city: '34-116 Spytkowice',
+        query: 'Piekarnia Jedynka, Wadowicka 141, Spytkowice',
+        mapUrl: 'https://maps.app.goo.gl/hVMnervq1BC3RNMc8',
+        featured: true,
+    },
+    {
+        name: 'Sklep firmowy',
+        type: 'Spytkowice',
+        street: 'ul. Rynek 9',
+        city: '34-116 Spytkowice',
+        query: 'Rynek 9, Spytkowice, Polska',
+        mapUrl: 'https://maps.app.goo.gl/mSnJvn2f8ZVRm5Z67',
+        featured: false,
+    },
+    {
+        name: 'Sklep firmowy',
+        type: 'Bachowice',
+        street: 'ul. ks. Gołby 31',
+        city: '34-116 Bachowice',
+        query: 'ks. Gołby 31, Bachowice, Polska',
+        mapUrl: 'https://maps.app.goo.gl/jGZWZHHpGSuBzMmc7',
+        featured: false,
+    },
+    {
+        name: 'Sklep firmowy',
+        type: 'Libiąż',
+        street: 'ul. Rouvroy 10',
+        city: '32-590 Libiąż',
+        query: 'Rouvroy 10, 32-590 Libiąż, Polska',
+        featured: false,
+    },
+];

@@ -1,14 +1,32 @@
-<header class="fixed top-0 z-50 w-full bg-white/90 backdrop-blur shadow-sm">
+<header class="fixed top-0 z-50 w-full bg-white shadow-sm">
     <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
         <div class="flex items-center gap-3 text-2xl font-bold text-amber-700">
             <img src="/logo.svg" alt="Piekarnia Jedynka" class="h-14 w-auto" />
-            <span>Piekarnia Jedynka</span>
+            <span class="font-brand text-[1.65rem] font-normal tracking-wide"
+                >Piekarnia JEDYNKA</span
+            >
         </div>
 
-        <nav class="hidden gap-8 md:flex">
-            <a href="#about">O nas</a>
-            <a href="#products">Oferta</a>
-            <a href="#contact">Kontakt</a>
+        <nav class="hidden items-center gap-8 md:flex">
+            <a
+                href="#products"
+                class="decoration-amber-600 decoration-2 underline-offset-8 transition hover:text-amber-700 hover:underline"
+            >
+                Oferta
+            </a>
+            <a
+                href="#contact"
+                class="decoration-amber-600 decoration-2 underline-offset-8 transition hover:text-amber-700 hover:underline"
+            >
+                Kontakt
+            </a>
+            <span class="h-7 w-0.5 bg-stone-400" aria-hidden="true"></span>
+            <a
+                href="/history"
+                class="decoration-amber-600 decoration-2 underline-offset-8 transition hover:text-amber-700 hover:underline"
+            >
+                Historia
+            </a>
         </nav>
     </div>
 </header>
