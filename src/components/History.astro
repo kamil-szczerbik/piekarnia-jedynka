@@ -58,13 +58,13 @@ const totalSteps = chapters.length + 1;
             duration-700
         "
     >
-        <p class="mb-4 text-sm uppercase tracking-[0.3em] text-amber-300">
+        <p class="mb-3 text-xs uppercase tracking-[0.3em] text-amber-300 sm:mb-4 sm:text-sm">
             Piekarnia Jedynka
         </p>
 
         <h1
             id="title"
-            class="text-5xl font-bold sm:text-6xl"
+            class="text-4xl font-bold sm:text-6xl"
         >
         </h1>
 
@@ -72,7 +72,7 @@ const totalSteps = chapters.length + 1;
             id="text"
             class="
                 mx-auto mt-6 max-w-2xl
-                text-lg leading-relaxed
+                text-base leading-relaxed
                 text-white/90
                 sm:text-xl
             "
@@ -92,7 +92,7 @@ const totalSteps = chapters.length + 1;
                     items-center
                     overflow-y-auto
                     px-6
-                    py-24
+                    pb-32 pt-20
                     opacity-0
                     transition-all
                     duration-700
@@ -106,7 +106,7 @@ const totalSteps = chapters.length + 1;
                         w-full
                         max-w-7xl
                         items-center
-                        gap-10
+                        gap-5
                         lg:grid-cols-[0.8fr_1.2fr]
                         lg:gap-16
                         xl:gap-24
@@ -118,9 +118,9 @@ const totalSteps = chapters.length + 1;
                             relative
                             mx-auto
                             flex
-                            max-h-[78vh]
+                            max-h-[26svh]
                             justify-center
-                            lg:justify-end
+                            lg:max-h-[78vh] lg:justify-end
                         "
                     >
                         <div
@@ -138,13 +138,14 @@ const totalSteps = chapters.length + 1;
                             alt="Założyciel Piekarni Jedynka"
                             class="
                                 relative
-                                max-h-[78vh]
+                                max-h-[26svh]
                                 max-w-full
                                 -rotate-[1.5deg]
                                 object-contain
                                 shadow-2xl
                                 ring-1
                                 ring-white/10
+                                lg:max-h-[78vh]
                             "
                         />
                     </div>
@@ -153,8 +154,8 @@ const totalSteps = chapters.length + 1;
                     <div class="max-w-2xl">
                         <p
                             class="
-                                mb-4
-                                text-sm
+                                mb-2
+                                text-xs
                                 uppercase
                                 tracking-[0.3em]
                                 text-amber-300
@@ -165,10 +166,11 @@ const totalSteps = chapters.length + 1;
 
                         <h2
                             class="
-                                text-4xl
+                                text-2xl
                                 font-bold
                                 leading-tight
-                                sm:text-5xl
+                                sm:text-4xl
+                                lg:text-5xl
                             "
                         >
                             {portraitChapter.title}
@@ -176,12 +178,13 @@ const totalSteps = chapters.length + 1;
 
                         <div
                             class="
-                                mt-7
-                                space-y-4
-                                text-base
+                                mt-4
+                                space-y-3
+                                text-sm
                                 leading-relaxed
                                 text-white/85
-                                sm:text-lg
+                                sm:mt-7 sm:space-y-4 sm:text-base
+                                lg:text-lg
                             "
                         >
                             {
@@ -202,12 +205,14 @@ const totalSteps = chapters.length + 1;
     <div
         id="article-content"
         class="
-            pointer-events-none
+            pointer-events-auto
             absolute inset-0
             hidden
             items-center
             justify-center
+            overflow-y-auto
             px-6
+            pb-32 pt-20
             opacity-0
             transition-all
             duration-700
@@ -219,7 +224,7 @@ const totalSteps = chapters.length + 1;
                 mx-auto grid
                 max-w-7xl
                 items-center
-                gap-12
+                gap-6
                 lg:grid-cols-[0.8fr_1.2fr]
                 lg:gap-20
             "
@@ -227,8 +232,8 @@ const totalSteps = chapters.length + 1;
             <div class="text-center lg:text-left">
                 <p
                     class="
-                        mb-4
-                        text-sm uppercase
+                        mb-2
+                        text-xs uppercase
                         tracking-[0.3em]
                         text-amber-300
                     "
@@ -236,13 +241,13 @@ const totalSteps = chapters.length + 1;
                     Z kart historii
                 </p>
 
-                <h2 class="text-4xl font-bold sm:text-5xl">
+                <h2 class="text-3xl font-bold sm:text-5xl">
                     Pisali o nas
                 </h2>
 
                 <p
                     class="
-                        mt-6
+                        mt-3
                         max-w-xl
                         text-lg
                         leading-relaxed
@@ -263,7 +268,7 @@ const totalSteps = chapters.length + 1;
                     relative
                     mx-auto
                     block
-                    max-h-[78vh]
+                    max-h-[42svh]
                     max-w-2xl
                     cursor-zoom-in
                     transition
@@ -286,7 +291,7 @@ const totalSteps = chapters.length + 1;
                     alt="Artykuł prasowy o Piekarni Jedynka"
                     class="
                         relative
-                        max-h-[78vh]
+                        max-h-[42svh]
                         w-auto
                         rotate-[1deg]
                         object-contain
@@ -295,6 +300,7 @@ const totalSteps = chapters.length + 1;
                         ring-white/10
                         transition-transform
                         duration-500
+                        lg:max-h-[78vh]
                         group-hover:rotate-0
                     "
                 />
@@ -371,7 +377,7 @@ const totalSteps = chapters.length + 1;
         href="/"
         class="
             pointer-events-auto
-            absolute left-6 top-6
+            absolute left-4 top-4
             flex items-center
             gap-2
             text-white/80
@@ -382,7 +388,7 @@ const totalSteps = chapters.length + 1;
     >
         <span class="text-xl">←</span>
 
-        <span class="text-sm uppercase tracking-widest">
+        <span class="text-xs uppercase tracking-widest sm:text-sm">
             Strona główna
         </span>
     </a>

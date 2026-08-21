@@ -2,7 +2,10 @@
 import main from '../assets/images/main.jpg';
 ---
 
-<section class="relative flex min-h-screen items-center justify-center overflow-hidden">
+<section
+    id="top"
+    class="relative flex min-h-svh items-center justify-center overflow-hidden pb-10 pt-24 md:min-h-screen md:py-20"
+>
     <img
         src={main.src}
         alt="Piekarnia Jedynka"
@@ -11,10 +14,14 @@ import main from '../assets/images/main.jpg';
 
     <div class="absolute inset-0 bg-black/50"></div>
 
-    <div class="relative z-10 max-w-4xl px-6 text-center text-white">
-        <h1 class="mb-6 text-5xl font-bold text-amber-100 sm:text-6xl">Piekarnia JEDYNKA</h1>
+    <div class="relative z-10 max-w-4xl px-5 text-center text-white sm:px-6">
+        <h1 class="mb-5 text-4xl font-bold leading-tight text-amber-100 sm:mb-6 sm:text-6xl">
+            Piekarnia JEDYNKA
+        </h1>
 
-        <p class="mx-auto mb-10 max-w-3xl text-xl leading-relaxed text-white/90">
+        <p
+            class="mx-auto mb-8 max-w-3xl text-base leading-relaxed text-white/90 sm:mb-10 sm:text-xl"
+        >
             W Spytkowicach każdego dnia przygotowujemy świeże pieczywo oraz tradycyjne wypieki.
             Dbamy o jakość naszych produktów i smak, który towarzyszy naszym klientom każdego dnia.
         </p>
@@ -22,14 +29,14 @@ import main from '../assets/images/main.jpg';
         <div class="flex flex-col justify-center gap-4 sm:flex-row">
             <a
                 href="#products"
-                class="rounded-full border border-white/60 bg-white/10 px-8 py-4 text-lg font-semibold backdrop-blur-sm transition hover:border-white hover:bg-white/20"
+                class="rounded-full border border-white/60 bg-white/10 px-6 py-3.5 font-semibold backdrop-blur-sm transition hover:border-white hover:bg-white/20 sm:px-8 sm:py-4 sm:text-lg"
             >
                 Zobacz ofertę
             </a>
 
             <a
                 href="#contact"
-                class="rounded-full border border-white/60 bg-white/10 px-8 py-4 text-lg font-semibold backdrop-blur-sm transition hover:border-white hover:bg-white/20"
+                class="rounded-full border border-white/60 bg-white/10 px-6 py-3.5 font-semibold backdrop-blur-sm transition hover:border-white hover:bg-white/20 sm:px-8 sm:py-4 sm:text-lg"
             >
                 Znajdź najbliższy sklep
             </a>
