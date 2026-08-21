@@ -3,6 +3,7 @@ import { chapters } from '../data/chapters';
 import article from '../assets/images/history_article.jpg';
 
 const portraitChapter = chapters.find((chapter) => chapter.layout === 'portrait');
+const totalSteps = chapters.length + 1;
 ---
 
 <!-- TŁA -->
@@ -85,10 +86,13 @@ const portraitChapter = chapters.find((chapter) => chapter.layout === 'portrait'
             <div
                 id="portrait-content"
                 class="
+                    pointer-events-auto
                     absolute inset-0
                     hidden
                     items-center
+                    overflow-y-auto
                     px-6
+                    py-24
                     opacity-0
                     transition-all
                     duration-700
@@ -298,6 +302,40 @@ const portraitChapter = chapters.find((chapter) => chapter.layout === 'portrait'
         </div>
     </div>
 
+    <!-- POSTĘP HISTORII -->
+    <nav
+        class="pointer-events-auto absolute right-6 top-1/2 hidden -translate-y-1/2 sm:block lg:right-10"
+        aria-label="Rozdziały historii"
+    >
+        <ol class="flex flex-col items-end gap-4">
+            {
+                Array.from({ length: totalSteps }, (_, index) => (
+                    <li>
+                        <button
+                            type="button"
+                            class="history-progress group flex cursor-pointer items-center gap-3 text-white/55 transition hover:text-white"
+                            data-go-step={index}
+                            aria-label={`Przejdź do etapu ${index + 1} z ${totalSteps}`}
+                        >
+                            <span class="history-progress-number text-xs font-semibold tabular-nums opacity-0 transition-opacity group-hover:opacity-100">
+                                {String(index + 1).padStart(2, '0')}
+                            </span>
+                            <span class="history-progress-mark h-2 w-2 rounded-full bg-current transition-all duration-300" />
+                        </button>
+                    </li>
+                ))
+            }
+        </ol>
+    </nav>
+
+    <p
+        id="mobile-progress"
+        class="absolute bottom-10 right-5 text-xs font-semibold tracking-[0.2em] text-white/70 sm:hidden"
+        aria-live="polite"
+    >
+        01 / {String(totalSteps).padStart(2, '0')}
+    </p>
+
     <!-- DALEJ -->
     <button
         id="next"
@@ -408,13 +446,31 @@ const portraitChapter = chapters.find((chapter) => chapter.layout === 'portrait'
     const chaptersData =
         document.querySelector<HTMLScriptElement>('#chapters-data');
 
+    const progressButtons =
+        document.querySelectorAll<HTMLButtonElement>('[data-go-step]');
+
+    const mobileProgress =
+        document.querySelector<HTMLElement>('#mobile-progress');
+
     const chapters = JSON.parse(
         chaptersData?.textContent ?? '[]'
     );
 
     let currentStep = 0;
 
+    const hideTimers = new WeakMap<HTMLElement, number>();
+
     function hideElement(element: HTMLElement | null) {
+        if (!element) {
+            return;
+        }
+
+        const previousTimer = hideTimers.get(element);
+
+        if (previousTimer) {
+            window.clearTimeout(previousTimer);
+        }
+
         element?.classList.remove('opacity-100');
 
         element?.classList.add(
@@ -422,13 +478,27 @@ const portraitChapter = chapters.find((chapter) => chapter.layout === 'portrait'
             'translate-y-6'
         );
 
-        setTimeout(() => {
-            element?.classList.remove('flex');
-            element?.classList.add('hidden');
+        const timer = window.setTimeout(() => {
+            element.classList.remove('flex');
+            element.classList.add('hidden');
+            hideTimers.delete(element);
         }, 500);
+
+        hideTimers.set(element, timer);
     }
 
     function showElement(element: HTMLElement | null) {
+        if (!element) {
+            return;
+        }
+
+        const pendingHide = hideTimers.get(element);
+
+        if (pendingHide) {
+            window.clearTimeout(pendingHide);
+            hideTimers.delete(element);
+        }
+
         element?.classList.remove('hidden');
         element?.classList.add('flex');
 
@@ -444,6 +514,17 @@ const portraitChapter = chapters.find((chapter) => chapter.layout === 'portrait'
 
     function showStep(index: number) {
         currentStep = index;
+
+        progressButtons.forEach((button, buttonIndex) => {
+            const isActive = buttonIndex === index;
+
+            button.classList.toggle('is-active', isActive);
+            button.setAttribute('aria-current', isActive ? 'step' : 'false');
+        });
+
+        if (mobileProgress) {
+            mobileProgress.textContent = `${String(index + 1).padStart(2, '0')} / ${String(steps.length).padStart(2, '0')}`;
+        }
 
         const isArticle = index === chapters.length;
         const chapter = chapters[index];
@@ -483,7 +564,7 @@ const portraitChapter = chapters.find((chapter) => chapter.layout === 'portrait'
             showElement(articleContent);
 
             if (nextLabel) {
-                nextLabel.textContent = 'Strona główna';
+                nextLabel.textContent = 'Zobacz ofertę';
             }
 
             if (nextIcon) {
@@ -550,21 +631,87 @@ const portraitChapter = chapters.find((chapter) => chapter.layout === 'portrait'
 
     steps.forEach((step) => observer.observe(step));
 
+    const scrollToStep = (index: number) => {
+        steps[index]?.scrollIntoView({
+            behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+                ? 'auto'
+                : 'smooth',
+        });
+    };
+
+    progressButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            scrollToStep(Number(button.dataset.goStep));
+        });
+    });
+
     nextButton?.addEventListener('click', () => {
         if (currentStep === steps.length - 1) {
-            window.location.href = '/';
+            window.location.href = '/#products';
             return;
         }
 
-        steps[currentStep + 1]?.scrollIntoView({
-            behavior: 'smooth',
+        scrollToStep(currentStep + 1);
+    });
+
+    window.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowDown' || event.key === 'PageDown') {
+            event.preventDefault();
+            scrollToStep(Math.min(currentStep + 1, steps.length - 1));
+        }
+
+        if (event.key === 'ArrowUp' || event.key === 'PageUp') {
+            event.preventDefault();
+            scrollToStep(Math.max(currentStep - 1, 0));
+        }
+    });
+
+    const syncStepWithScroll = () => {
+        let closestStep = 0;
+        let closestDistance = Number.POSITIVE_INFINITY;
+
+        steps.forEach((step, index) => {
+            const distance = Math.abs(step.getBoundingClientRect().top);
+
+            if (distance < closestDistance) {
+                closestDistance = distance;
+                closestStep = index;
+            }
         });
+
+        showStep(closestStep);
+    };
+
+    window.addEventListener('pageshow', () => {
+        requestAnimationFrame(syncStepWithScroll);
     });
 
     showStep(0);
 </script>
 
 <style>
+    :global(html) {
+        scroll-snap-type: y mandatory;
+    }
+
+    [data-step] {
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+    }
+
+    .history-progress.is-active {
+        color: rgb(252 211 77);
+    }
+
+    .history-progress.is-active .history-progress-number {
+        opacity: 1;
+    }
+
+    .history-progress.is-active .history-progress-mark {
+        height: 1.75rem;
+        border-radius: 9999px;
+    }
+
     .history-image {
         filter: brightness(0.9);
         animation: history-zoom 14s ease-out forwards;
@@ -587,6 +734,23 @@ const portraitChapter = chapters.find((chapter) => chapter.layout === 'portrait'
 
         to {
             transform: scale(1.06);
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        :global(html) {
+            scroll-behavior: auto;
+        }
+
+        .history-image {
+            animation: none;
+        }
+
+        .history-background,
+        #content,
+        #portrait-content,
+        #article-content {
+            transition-duration: 0.01ms;
         }
     }
 </style>
