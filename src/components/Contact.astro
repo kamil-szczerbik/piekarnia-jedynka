@@ -1,10 +1,5 @@
 ---
 import { locations } from '../data/locations';
-
-const getMapUrl = (location: (typeof locations)[number]) =>
-    'mapUrl' in location
-        ? location.mapUrl
-        : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location.query)}`;
 ---
 
 <section id="kontakt" class="bg-stone-100 py-16 text-stone-900 md:py-24">
@@ -22,7 +17,7 @@ const getMapUrl = (location: (typeof locations)[number]) =>
             {
                 locations.map((location) => (
                     <a
-                        href={getMapUrl(location)}
+                        href={location.mapUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         class:list={[

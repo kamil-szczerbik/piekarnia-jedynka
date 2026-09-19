@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import main from '../assets/images/main.jpg';
 ---
 
@@ -6,10 +7,16 @@ import main from '../assets/images/main.jpg';
     id="start"
     class="relative flex min-h-svh items-center justify-center overflow-hidden pb-10 pt-24 md:min-h-screen md:py-20"
 >
-    <img
-        src={main.src}
-        alt="Piekarnia Jedynka"
-        class="absolute inset-0 h-full w-full scale-[1.01] object-cover blur-[2px]"
+    <Image
+        src={main}
+        alt=""
+        widths={[640, 1024, 1920]}
+        sizes="100vw"
+        format="webp"
+        quality={65}
+        loading="eager"
+        fetchpriority="high"
+        class="absolute inset-0 h-full w-full scale-[1.01] object-cover"
     />
 
     <div class="absolute inset-0 bg-black/50"></div>
@@ -22,8 +29,8 @@ import main from '../assets/images/main.jpg';
         <p
             class="mx-auto mb-8 max-w-3xl text-base leading-relaxed text-white/90 sm:mb-10 sm:text-xl"
         >
-            W Spytkowicach każdego dnia przygotowujemy świeże pieczywo oraz tradycyjne wypieki.
-            Dbamy o jakość naszych produktów i smak, który towarzyszy naszym klientom każdego dnia.
+            W Spytkowicach codziennie przygotowujemy świeże pieczywo oraz tradycyjne wypieki na naturalnym zakwasie.
+            Dbamy o jakość naszych produktów i smak, który towarzyszy naszym klientom od pokoleń.
         </p>
 
         <div class="flex flex-col justify-center gap-4 sm:flex-row">

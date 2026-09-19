@@ -18,7 +18,7 @@ export const products = [
     },
     {
         category: 'Bułki',
-        items: ['Wrocławska', 'Kajzerka', 'Ziarno', 'Grahamka', 'Z makiem', 'Włoska'],
+        items: ['Wrocławska', 'Kajzerka', 'Kornelka', 'Grahamka', 'Z makiem', 'Włoska'],
     },
     {
         category: 'Słodkie wypieki',
@@ -30,7 +30,7 @@ export const products = [
             'Babka firmowa',
             'Babka makowa',
             'Ciasto drożdżowe',
-            'Kulki serowe',
+            'Kulki maślane',
         ],
     },
 ];

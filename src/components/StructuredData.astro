@@ -37,9 +37,12 @@ const parseAddress = (street: string, city: string) => {
         streetAddress: street,
         postalCode: match?.[1] ?? '',
         addressLocality: match?.[2] ?? city,
+        addressRegion: 'małopolskie',
         addressCountry: 'PL',
     };
 };
+
+const SPYTKOWICE_DISAMBIGUATION = 'Piekarnia w Spytkowicach w powiecie wadowickim (kod pocztowy 34-116, woj. małopolskie), nie w Spytkowicach w powiecie nowotarskim.';
 
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
 const mainId = `${siteUrl}/#piekarnia-jedynka`;
@@ -55,6 +58,9 @@ const branches = locations.map((location, index) => ({
     telephone: '+48503900284',
     email: 'piekarnia.jedynka@gmail.com',
     address: parseAddress(location.street, location.city),
+    ...(location.city.includes('Spytkowice') && {
+        disambiguatingDescription: SPYTKOWICE_DISAMBIGUATION,
+    }),
     ...(!location.featured && { parentOrganization: { '@id': mainId } }),
     ...('hours' in location && location.hours
         ? { openingHoursSpecification: location.hours.map(parseOpeningHours) }

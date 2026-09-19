@@ -5,7 +5,13 @@ html {
 }
 
 section {
-    scroll-margin-top: 80px; /* wynika z class="h-20" w Header.astro */
+    scroll-margin-top: 64px; /* wynika z class="h-16" w Header.astro (mobile) */
+}
+
+@media (min-width: 48rem) {
+    section {
+        scroll-margin-top: 80px; /* wynika z class="md:h-20" w Header.astro */
+    }
 }
 
 .fade-in {
