@@ -1,0 +1,68 @@
+---
+import { getImage } from 'astro:assets';
+import ogSource from '../assets/images/main.jpg';
+import { locations } from '../data/locations';
+
+const DAY_MAP: Record<string, string> = {
+    pon: 'Monday',
+    wt: 'Tuesday',
+    śr: 'Wednesday',
+    czw: 'Thursday',
+    pt: 'Friday',
+    sob: 'Saturday',
+    niedz: 'Sunday',
+};
+const DAY_ORDER = Object.keys(DAY_MAP);
+
+const parseOpeningHours = (line: string) => {
+    const [dayPart, timePart] = line.split(': ');
+    const [opens, closes] = timePart.split('-');
+    const [fromDay, toDay] = dayPart.split('-');
+    const dayKeys = toDay
+        ? DAY_ORDER.slice(DAY_ORDER.indexOf(fromDay), DAY_ORDER.indexOf(toDay) + 1)
+        : [fromDay];
+
+    return {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: dayKeys.map((key) => DAY_MAP[key]),
+        opens,
+        closes,
+    };
+};
+
+const parseAddress = (street: string, city: string) => {
+    const match = city.match(/^(\d{2}-\d{3})\s+(.*)$/);
+    return {
+        '@type': 'PostalAddress',
+        streetAddress: street,
+        postalCode: match?.[1] ?? '',
+        addressLocality: match?.[2] ?? city,
+        addressCountry: 'PL',
+    };
+};
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const mainId = `${siteUrl}/#piekarnia-jedynka`;
+const ogImage = await getImage({ src: ogSource, width: 1200, height: 630 });
+const imageUrl = `${siteUrl}${ogImage.src}`;
+
+const branches = locations.map((location, index) => ({
+    '@type': 'Bakery',
+    '@id': location.featured ? mainId : `${siteUrl}/#lokalizacja-${index}`,
+    name: location.featured ? 'Piekarnia Jedynka' : `Piekarnia Jedynka - ${location.type}`,
+    url: siteUrl,
+    image: imageUrl,
+    telephone: '+48503900284',
+    email: 'piekarnia.jedynka@gmail.com',
+    address: parseAddress(location.street, location.city),
+    ...(!location.featured && { parentOrganization: { '@id': mainId } }),
+    ...('hours' in location && location.hours
+        ? { openingHoursSpecification: location.hours.map(parseOpeningHours) }
+        : {}),
+}));
+---
+
+<script
+    type="application/ld+json"
+    set:html={JSON.stringify({ '@context': 'https://schema.org', '@graph': branches })}
+/>

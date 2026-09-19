@@ -1,11 +1,21 @@
 ---
 import '../styles/global.css';
+import { getImage } from 'astro:assets';
+import ogSource from '../assets/images/main.jpg';
 
 interface Props {
     title?: string;
+    description?: string;
 }
 
-const { title = 'Piekarnia Jedynka' } = Astro.props;
+const {
+    title = 'Piekarnia Jedynka',
+    description = 'Piekarnia Jedynka - świeże pieczywo i tradycyjne wypieki, dostępne w naszych sklepach firmowych i lokalnych sklepach spożywczych w regionie.',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImage = await getImage({ src: ogSource, width: 1200, height: 630 });
+const ogImageURL = new URL(ogImage.src, Astro.site);
 ---
 
 <!doctype html>
@@ -13,16 +23,32 @@ const { title = 'Piekarnia Jedynka' } = Astro.props;
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="canonical" href={canonicalURL} />
 
         <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta name="robots" content="index, follow" />
 
-        <meta
-            name="description"
-            content="Piekarnia Jedynka - świeże pieczywo i wypieki każdego dnia."
-        />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Piekarnia Jedynka" />
+        <meta property="og:locale" content="pl_PL" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={canonicalURL} />
+        <meta property="og:image" content={ogImageURL} />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={ogImageURL} />
+
         <script>
             import '../scripts/animations';
         </script>
+
+        <slot name="head" />
     </head>
 
     <body class="bg-stone-50 text-stone-800">

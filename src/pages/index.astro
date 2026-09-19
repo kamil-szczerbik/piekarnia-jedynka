@@ -5,9 +5,14 @@ import Hero from '../components/Hero.astro';
 import Products from '../components/Products.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
+import StructuredData from '../components/StructuredData.astro';
 ---
 
 <MainLayout title="Piekarnia Jedynka">
+    <Fragment slot="head">
+        <StructuredData />
+    </Fragment>
+
     <Header />
 
     <Hero />

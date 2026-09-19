@@ -1,0 +1,23 @@
+# TODO poprawić przed wdrożeniem
+
+# Piekarnia Jedynka
+
+> Rodzinna piekarnia w Spytkowicach (Małopolska, Polska), wypiekająca świeże pieczywo i tradycyjne wypieki każdego dnia.
+
+Piekarnia Jedynka produkuje pieczywo (m.in. chleb wiejski, pasterski, tygrysi, żytni, błonnikowy, graham, orkiszowy, sielankowy, domowy, weka wrocławska, bagietka, tostowy), bułki (wrocławska, kajzerka, ziarno, grahamka, z makiem, włoska) oraz słodkie wypieki (drożdżówka, rogal czekoladowy, pączek, kołaczyk, babka firmowa, babka makowa, ciasto drożdżowe, kulki serowe). Produkty dostępne są też w lokalnych sklepach.
+
+## Lokalizacje
+
+- Piekarnia Jedynka (produkcja i sklep) — ul. Wadowicka 141, 34-116 Spytkowice
+- Sklep firmowy — ul. Rynek 9, 34-116 Spytkowice (pon-sob: 06:00-13:00)
+- Sklep firmowy — ul. ks. Gołby 31, 34-116 Bachowice (pon-pt: 05:00-14:00, sob: 05:00-13:00)
+- Sklep firmowy — ul. Rouvroy 10, 32-590 Libiąż (pon-pt: 06:00-13:00, sob: 06:00-12:00)
+
+## Kontakt
+
+- Telefon: +48 503 900 284
+- E-mail: piekarnia.jedynka@gmail.com
+
+## Strony
+
+- [Strona główna](/): oferta, lokalizacje sklepów i dane kontaktowe
