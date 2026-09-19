@@ -61,6 +61,11 @@ const getMapUrl = (location: (typeof locations)[number]) =>
                                 <span class="block">{location.street}</span>
                                 <span class="block">{location.city}</span>
                             </address>
+                            {location.hours && location.hours.length > 0 && (
+                                <ul class="mt-2 space-y-0.5 text-sm text-stone-500">
+                                    {location.hours.map((line) => <li>{line}</li>)}
+                                </ul>
+                            )}
                         </div>
 
                         <svg

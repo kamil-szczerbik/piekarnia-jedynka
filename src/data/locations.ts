@@ -16,6 +16,7 @@ export const locations = [
         query: 'Rynek 9, Spytkowice, Polska',
         mapUrl: 'https://maps.app.goo.gl/mSnJvn2f8ZVRm5Z67',
         featured: false,
+        hours: ['pon-sob: 06:00-13:00'],
     },
     {
         name: 'Sklep firmowy',
@@ -25,6 +26,7 @@ export const locations = [
         query: 'ks. Gołby 31, Bachowice, Polska',
         mapUrl: 'https://maps.app.goo.gl/jGZWZHHpGSuBzMmc7',
         featured: false,
+        hours: ['pon-pt: 05:00-14:00', 'sob: 05:00-13:00'],
     },
     {
         name: 'Sklep firmowy',
@@ -32,6 +34,8 @@ export const locations = [
         street: 'ul. Rouvroy 10',
         city: '32-590 Libiąż',
         query: 'Rouvroy 10, 32-590 Libiąż, Polska',
+        mapUrl: 'https://maps.app.goo.gl/bB52svPvvGqrJoDD9',
         featured: false,
+        hours: ['pon-pt: 06:00-13:00', 'sob: 06:00-12:00'],
     },
 ];
