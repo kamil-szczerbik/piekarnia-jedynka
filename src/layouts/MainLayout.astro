@@ -10,7 +10,7 @@ interface Props {
 
 const {
     title = 'Piekarnia Jedynka',
-    description = 'Piekarnia Jedynka - świeże pieczywo i tradycyjne wypieki, dostępne w naszych sklepach firmowych i lokalnych sklepach spożywczych w regionie.',
+    description = 'Rodzinna piekarnia w Spytkowicach. Świeże pieczywo i tradycyjne wypieki na naturalnym zakwasie – sklepy firmowe w Spytkowicach, Bachowicach i Libiążu.',
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -23,8 +23,10 @@ const ogImageURL = new URL(ogImage.src, Astro.site);
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="canonical" href={canonicalURL} />
 
         <title>{title}</title>

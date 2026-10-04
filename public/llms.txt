@@ -1,5 +1,3 @@
-# TODO poprawić przed wdrożeniem
-
 # Piekarnia Jedynka
 
 > Rodzinna piekarnia w Spytkowicach (powiat wadowicki, woj. małopolskie, kod pocztowy 34-116), która od pokoleń każdego dnia wypieka świeże pieczywo i tradycyjne wypieki na naturalnym zakwasie.
