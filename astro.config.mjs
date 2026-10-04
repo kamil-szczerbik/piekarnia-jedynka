@@ -4,8 +4,7 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
-// TODO: podmienić na właściwą przed wdrożeniem
-const site = 'https://piekarniajedynka.pl';
+const site = 'https://piekarnia-jedynka.pl';
 
 // https://astro.build/config
 export default defineConfig({
